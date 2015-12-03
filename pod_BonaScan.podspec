@@ -29,22 +29,22 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'pod_BonaScan/*.{h,m}'
-    s.resource     = 'pod_BonaScan/LBXScan+UIKit/CodeScan.bundle'
+  s.source_files = '*.{h,m}'
+    s.resource     = 'LBXScan+UIKit/CodeScan.bundle'
     s.requires_arc = true
     s.prefix_header_contents = '#import <Foundation/Foundation.h>'
     s.subspec 'LBXScanCore' do |ss|
-      ss.source_files = 'pod_BonaScan/LBXScanCore/*.{h,m}'
+      ss.source_files = 'LBXScanCore/*.{h,m}'
       ss.subspec 'LibZXing' do |sss|
          sss.subspec 'ZXingWrapper' do |ssss|
-         ssss.source_files = 'pod_BonaScan/LBXScanCore/LibZXing/ZXingWrapper/*.{h,m}'
+         ssss.source_files = 'LBXScanCore/LibZXing/ZXingWrapper/*.{h,m}'
          end
          sss.subspec 'ZXingObjC' do |ssss|
-         ssss.source_files = 'pod_BonaScan/LBXScanCore/LibZXing/ZXingObjC/**/*.{h,m}'
+         ssss.source_files = 'LBXScanCore/LibZXing/ZXingObjC/**/*.{h,m}'
          end
       end
     end
     s.subspec 'LBXScan+UIKit' do |ss|
-      ss.source_files = 'pod_BonaScan/LBXScan+UIKit/*.{h,m}'
+      ss.source_files = 'LBXScan+UIKit/*.{h,m}'
     end
 end
