@@ -29,12 +29,22 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
-  #s.resource_bundles = {
-  #  'pod_SHLUILabel' => ['Pod/Assets/*.png']
-  #}
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.source_files = 'pod_BonaScan/*.{h,m}'
+    s.resource     = 'pod_BonaScan/LBXScan+UIKit/CodeScan.bundle'
+    s.requires_arc = true
+    s.prefix_header_contents = '#import <Foundation/Foundation.h>'
+    s.subspec 'LBXScanCore' do |ss|
+      ss.source_files = 'pod_BonaScan/LBXScanCore/*.{h,m}'
+      ss.subspec 'LibZXing' do |sss|
+         sss.subspec 'ZXingWrapper' do |ssss|
+         ssss.source_files = 'pod_BonaScan/LBXScanCore/LibZXing/ZXingWrapper/*.{h,m}'
+         end
+         sss.subspec 'ZXingObjC' do |ssss|
+         ssss.source_files = 'pod_BonaScan/LBXScanCore/LibZXing/ZXingObjC/**/*.{h,m}'
+         end
+      end
+    end
+    s.subspec 'LBXScan+UIKit' do |ss|
+      ss.source_files = 'pod_BonaScan/LBXScan+UIKit/*.{h,m}'
+    end
 end
